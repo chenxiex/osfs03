@@ -16,20 +16,15 @@ My solution to this problem is to test our code in FreeDOS_:
 
      $ nasm foo.asm -o foo.com
 
-2. create a new floppy image (say ``pm.img``) and copy the COM file to it::
+2. `create a new floppy image`_ (say ``pm.img``) and copy the COM file to it::
 
-     $ sudo mount -o loop pm.img /mnt/floppy
-     $ sudo cp foo.com /mnt/floppy/
-     $ sudo umount /mnt/floppy
-
-3. "insert" the new floppy into the virtual machine by adding a line in ``bochsrc``::
-
-     floppya: 1_44=freedos.img, status=inserted
-     floppyb: 1_44=pm.img, status=inserted
+     $ sudo mount -o loop pm.img /mnt
+     $ sudo cp foo.com /mnt
+     $ sudo umount /mnt
 
 4. run FreeDos::
 
-     $ bochs
+     $ qemu-system-i386 -fda freedos.img -fdb pm.img
 
 5. run our code::
 
@@ -43,3 +38,4 @@ Remember to replace ``foo.asm`` with the true source file name and unzip the ima
 .. _FreeDos: http://www.freedos.org/
 .. _`‹prev`: https://github.com/yyu/osfs02
 .. _`next›`: https://github.com/yyu/osfs04
+.. _`create a new floppy image`: https://github.com/chenxiex/osfs00/blob/qemu/Tips%26Tricks.md#%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%E4%B8%8E%E6%8C%82%E8%BD%BD%E8%BD%AF%E7%9B%98
