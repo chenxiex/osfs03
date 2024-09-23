@@ -8,9 +8,9 @@ BIN:=$(subst .asm,.com,$(SRC))
 .PHONY : everything
 
 everything : $(BIN)
-	sudo mount -o loop pm.img /mnt/floppy/
-	sudo cp $(BIN) /mnt/floppy/ -v
-	sudo umount /mnt/floppy/
+	sudo mount -o loop pm.img /mnt
+	sudo cp $(BIN) /mnt -v
+	sudo umount /mnt
 
 $(BIN) : $(SRC)
 	nasm $< -o $@
