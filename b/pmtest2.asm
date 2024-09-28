@@ -200,7 +200,7 @@ LABEL_SEG_CODE32:
 	call	TestRead
 
 	; 到此停止
-	jmp	SelectorCode16:0
+	jmp	SelectorCode16:0	; 此处偏移地址为0x50。如果段基址为0x326b0，那么实际地址为0x32700
 
 ; ------------------------------------------------------------------------
 TestRead:

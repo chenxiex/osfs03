@@ -23,5 +23,10 @@ move: $(BIN)
 run : move
 	qemu-system-i386 -fda freedos.img -fdb pm.img -boot a
 
+debug: move
+	tmux new-session -d -s debug_session 'qemu-system-i386 -fda freedos.img -fdb pm.img -boot a -s -S -monitor stdio'
+	tmux split-window -h -t debug_session 'gdb -x gdbinit'
+	tmux attach -t debug_session
+
 clean: 
 	rm -f $(BIN)
